@@ -10,11 +10,11 @@ class NameForm extends React.Component {
   }
 
   handleFirstNameChange(event) {
-    this.setState({name: {firstname: event.target.firstname}});
+    this.setState({name: {firstname: event.target.value, lastname: this.state.name.lastname}});
   }
 
   handleLastNameChange(event) {
-    this.setState({name: {lastname: event.target.lastname}});
+    this.setState({name: {firstname: this.state.name.firstname, lastname: event.target.value}});
   }
 
   handleSubmit(event) {
@@ -27,11 +27,11 @@ class NameForm extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <label>
           First Name:
-          <input type="text" firstname={this.state.name.firstname} onChange={this.handleFirstNameChange} />
+          <input type="text" value={this.state.name.firstname} onChange={this.handleFirstNameChange} />
         </label>
         <label>
           Last Name:
-          <input type="text" lastname={this.state.name.lastname} onChange={this.handleLastNameChange} />
+          <input type="text" value={this.state.name.lastname} onChange={this.handleLastNameChange} />
         </label>
         <input type="submit" value="Submit" />
       </form>
