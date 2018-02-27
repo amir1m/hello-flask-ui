@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import ResponseText from './ResponseText';
+
 class NameForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {name: {firstname: '', lastname: ''}};
-
+    this.state = {name:{firstname: '', lastname: ''}, submitted: false}
     this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
     this.handleLastNameChange = this.handleLastNameChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,24 +19,29 @@ class NameForm extends React.Component {
   }
 
   handleSubmit(event) {
+    this.setState({submitted: true})
+    console.log("Setting submitted to : ", this.state.submitted)
     alert('A name was submitted: ' + this.state.name.firstname + ' ' + this.state.name.lastname);
     event.preventDefault();
   }
 
   render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          First Name:
-          <input type="text" value={this.state.name.firstname} onChange={this.handleFirstNameChange} />
-        </label>
-        <label>
-          Last Name:
-          <input type="text" value={this.state.name.lastname} onChange={this.handleLastNameChange} />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
-    );
+      return (
+        <div>
+          <form onSubmit={this.handleSubmit}>
+            <label>
+              First Name:
+              <input type="text" value={this.state.name.firstname} onChange={this.handleFirstNameChange} />
+            </label>
+            <label>
+              Last Name:
+              <input type="text" value={this.state.name.lastname} onChange={this.handleLastNameChange} />
+            </label>
+            <input type="submit" value="Submit" />
+          </form>
+          {this.state.submitted && <ResponseText/>}
+        </div>
+      )
   }
 }
 
