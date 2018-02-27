@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
+import axios from 'axios'
 class ResponseText extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {msg:'', first_name: '', last_name:''}
-    console.log('First name: ', this.state.first_name)
+    this.state = {msg:props.msg, firstname: props.firstname, lastname:props.lastname}
+    console.log("State in ResponseText: ", this.state)
   }
   render() {
-    return(<p> Resonse: {this.state.first_name}</p>);
+    return(<div> <p>Resonse:</p>
+              <p>First Name:{this.state.firstname}</p>
+              <p>Last Name:{this.state.lastname}</p>
+              <p>MSG:{this.state.msg}</p>
+            </div>);
   }
 }
 
